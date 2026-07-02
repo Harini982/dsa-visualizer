@@ -29,12 +29,18 @@ export default function ArraysPage() {
         />
       </div>
 
-      <div className="mt-4 flex justify-center">
+      <div className="mt-4 flex justify-center gap-4">
         <button
           onClick={insertNumber}
           className="rounded-lg bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
         >
           Insert
+        </button>
+
+        <button
+          className="rounded-lg bg-red-600 px-6 py-2 text-white hover:bg-red-700"
+        >
+          Delete
         </button>
       </div>
 
