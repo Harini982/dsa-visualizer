@@ -5,12 +5,14 @@ import { useState } from "react";
 export default function ArraysPage() {
   const [array, setArray] = useState([10, 25, 50]);
   const [number, setNumber] = useState("");
+  const [foundIndex, setFoundIndex] = useState(-1);
 
   function insertNumber() {
     if (number === "") return;
 
     setArray([...array, Number(number)]);
     setNumber("");
+    setFoundIndex(-1);
   }
 
   function deleteNumber() {
@@ -22,6 +24,17 @@ export default function ArraysPage() {
 
     setArray(updatedArray);
     setNumber("");
+    setFoundIndex(-1);
+  }
+
+  function searchNumber() {
+    if (number === "") return;
+
+    const index = array.findIndex(
+      (value) => value === Number(number)
+    );
+
+    setFoundIndex(index);
   }
 
   return (
@@ -54,6 +67,13 @@ export default function ArraysPage() {
         >
           Delete
         </button>
+
+        <button
+          onClick={searchNumber}
+          className="rounded-lg bg-green-600 px-6 py-2 text-white hover:bg-green-700"
+        >
+          Search
+        </button>
       </div>
 
       <h2 className="mt-10 text-center text-2xl font-bold">
@@ -64,7 +84,11 @@ export default function ArraysPage() {
         {array.map((value, index) => (
           <div
             key={index}
-            className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-xl font-bold text-white"
+            className={`flex h-16 w-16 items-center justify-center rounded-lg text-xl font-bold text-white ${
+              index === foundIndex
+                ? "bg-green-600"
+                : "bg-blue-500"
+            }`}
           >
             {value}
           </div>
