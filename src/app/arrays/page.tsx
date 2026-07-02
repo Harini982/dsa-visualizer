@@ -13,6 +13,17 @@ export default function ArraysPage() {
     setNumber("");
   }
 
+  function deleteNumber() {
+    if (number === "") return;
+
+    const updatedArray = array.filter(
+      (value) => value !== Number(number)
+    );
+
+    setArray(updatedArray);
+    setNumber("");
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-4xl font-bold text-center text-blue-700">
@@ -38,6 +49,7 @@ export default function ArraysPage() {
         </button>
 
         <button
+          onClick={deleteNumber}
           className="rounded-lg bg-red-600 px-6 py-2 text-white hover:bg-red-700"
         >
           Delete
